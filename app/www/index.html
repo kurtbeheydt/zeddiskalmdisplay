@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="lib/OnsenUI/css/onsenui.css">
+    <link rel="stylesheet" type="text/css" href="lib/OnsenUI/css/onsen-css-components.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <title>ZEDDIS KALM</title>
+</head>
+
+<body>
+    <ons-navigator id="appNavigator" swipeable swipe-target-width="80px">
+        <ons-page>
+            <ons-splitter id="appSplitter">
+                <ons-splitter-content page="home.html"></ons-splitter-content>
+            </ons-splitter>
+        </ons-page>
+    </ons-navigator>
+
+    <template id="home.html">
+        <ons-page>
+            <ons-toolbar>
+                <div class="center zeddis">ZEDDIS KALM</div>
+            </ons-toolbar>
+            <div class="ble-not-connected" style="display: none;">
+                <ons-list>
+                    <ons-list-header class="zeddisheader">Verbind de app met de display</ons-list-header>
+                    <ons-list-item class="general">
+                        <p class="zeddistekst">Zet de display aan, kies refresh om de display te zoeken en kies het display om verbinding te maken.</p>
+                    </ons-list-item>
+                </ons-list>
+                <ons-list id="ble-devices">
+                    <ons-list-item class="general">
+                        <ons-button id="refreshDeviceList" class="zeddisbutton">Refresh bluetooth search</ons-button>
+                    </ons-list-item>
+                    <div class="ble-results" style="display: none;">
+                        <ons-list-header class="zeddisheader">Gevonden displays</ons-list-header>
+                        <div id="ble-found-devices">
+                            <ons-list-item>
+                                <div style="text-align: center;">
+                                    <em>Geen displays gevonden</em>
+                                </div>
+                            </ons-list-item>
+                        </div>
+                    </div>
+                </ons-list>
+            </div>
+            <div class="ble-connected" style="display: none;">
+                <ons-list>
+                    <ons-list-header class="zeddisheader">Verbonden met display</ons-list-header>
+                    <ons-list-item class="general">
+                        <ons-button id="disconnectDevice" class="zeddisbutton">Disconnect</ons-button>
+                    </ons-list-item>
+                </ons-list>
+                <ons-list style="text-align: center">
+                    <ons-list-header class="zeddisheader" style="padding-top: 10px;">Zet je eigen tekst</ons-list-header>
+                    <ons-list-item id="customText" class="general">
+                        <div style="margin: auto;">
+                            <p>
+                                <ons-input id="line1" class="zeddisinput" modifier="underbar" placeholder="lijn 1"
+                                    float></ons-input>
+                            </p>
+                            <p>
+                                <ons-input id="line2" class="zeddisinput" modifier="underbar" placeholder="lijn 2"
+                                    float></ons-input>
+                            </p>
+                            <p style="margin-top: 30px;">
+                                <ons-button id="setCustomText" class="zeddisbutton">Zet tekst</ons-button>
+                            </p>
+                        </div>
+                    </ons-list-item>
+                </ons-list>
+                <ons-list>
+                    <ons-list-header class="zeddisheader">Of kies een template</ons-list-header>
+                    <ons-list-item class="general">
+                        <ons-button class="newText zeddisbutton" data-value="DANKU|  WEL">DANKUWEL</ons-button>
+                        <ons-button class="newText zeddisbutton" data-value="ZEDDIS| KALM">ZEDDIS KALM</ons-button>
+                        <ons-button class="newText zeddisbutton" data-value="ALLES|   UIT">ALLES UIT</ons-button>
+                    </ons-list-item>
+                </ons-list>
+            </div>
+            <script>
+                ons.getScriptPage().onShow = function () {
+                    bluetooth.toggleConnectionButtons();
+                };
+
+                ons.getScriptPage().onInit = function () {
+                    $('.general').on('click', '#refreshDeviceList', function (e) {
+                        bluetooth.refreshDeviceList();
+                    });
+                    $('#ble-found-devices').on('click', 'ons-list-item', function (e) {
+                        bluetooth.connectDevice($(this).attr("data-device-id"), $(this).attr(
+                            "data-device-name"));
+                    });
+                    $('.general').on('click', '#disconnectDevice', function (e) {
+                        bluetooth.disconnectDevice(e);
+                    });
+
+                    $('#textTemplates').on('click', '.newText', function (e) {
+                        var value = $(this).attr('data-value');
+                        bluetooth.sendData(value);
+                        console.log(value);
+                    });
+
+                    $('#customText').on('click', '#setCustomText', function (e) {
+                        var value = $('#line1').val() + '|' + $('#line2').val();
+                        bluetooth.sendData(value);
+                        console.log(value);
+                    });
+                };
+            </script>
+        </ons-page>
+    </template>
+
+    <template id="logs.html">
+        <ons-page>
+            <ons-card>
+                <div class="title">Log</div>
+                <div id="logs" class="content">
+
+                </div>
+            </ons-card>
+        </ons-page>
+    </template>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="lib/OnsenUI/js/onsenui.min.js"></script>
+    <script type="text/javascript" src="lib/jquery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="lib/moment.min.js"></script>
+    <script type="text/javascript" src="js/debug.js"></script>
+    <script type="text/javascript" src="js/storage.js"></script>
+    <script type="text/javascript" src="js/bluetooth.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+</body>
+
+</html>

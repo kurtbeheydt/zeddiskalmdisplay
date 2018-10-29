@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="be.postduif.zeddiskalmdisplay" ios-CFBundleVersion="1.0.2" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>ZeddisKalmDisplay</name>
+    <description>
+        Een app speciaal voor Karen.
+    </description>
+    <author email="kurt@postduif.be" href="http://www.postduif.be">
+        Kurt Beheydt
+    </author>
+    <content src="index.html" />
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+        <preference name="BackupWebStorage" value="local" />
+        <config-file parent="UIBackgroundModes" target="*-Info.plist">
+            <array>
+                <string>bluetooth-central</string>
+            </array>
+        </config-file>
+        <config-file parent="NSBluetoothPeripheralUsageDescription" target="*-Info.plist">
+            <string>Deze app maakt via bluetooth verbinding met een led display.</string>
+        </config-file>
+        <config-file parent="ITSAppUsesNonExemptEncryption" target="*-Info.plist">
+            <false />
+        </config-file>
+        <config-file parent="CFBundleDisplayName" platform="ios" target="*-Info.plist">
+            <string>ZEDDIS KALM</string>
+        </config-file>
+    </platform>
+    <plugin name="cordova-plugin-ble-central" spec="^1.2.2" />
+    <engine name="ios" spec="^4.5.5" />
+</widget>
