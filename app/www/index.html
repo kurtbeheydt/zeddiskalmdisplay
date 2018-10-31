@@ -30,14 +30,14 @@
                 <ons-list>
                     <ons-list-header class="zeddisheader">Verbind de app met de display</ons-list-header>
                     <ons-list-item class="general">
-                        <p class="zeddistekst">Zet de display aan, kies refresh om de display te zoeken en kies het display om verbinding te maken.</p>
+                        <p class="zeddistekst">Zet de display aan, kies refresh om de display te zoeken en kies de display om verbinding te maken.</p>
                     </ons-list-item>
                 </ons-list>
                 <ons-list id="ble-devices">
                     <ons-list-item class="general">
                         <ons-button id="refreshDeviceList" class="zeddisbutton">Refresh bluetooth search</ons-button>
                     </ons-list-item>
-                    <div class="ble-results" style="display: none;">
+                    <div id="ble-results" style="display: none;">
                         <ons-list-header class="zeddisheader">Gevonden displays</ons-list-header>
                         <div id="ble-found-devices">
                             <ons-list-item>
@@ -74,7 +74,7 @@
                         </div>
                     </ons-list-item>
                 </ons-list>
-                <ons-list>
+                <ons-list id="textTemplates">
                     <ons-list-header class="zeddisheader">Of kies een template</ons-list-header>
                     <ons-list-item class="general">
                         <ons-button class="newText zeddisbutton" data-value="DANKU|  WEL">DANKUWEL</ons-button>
@@ -113,17 +113,6 @@
                     });
                 };
             </script>
-        </ons-page>
-    </template>
-
-    <template id="logs.html">
-        <ons-page>
-            <ons-card>
-                <div class="title">Log</div>
-                <div id="logs" class="content">
-
-                </div>
-            </ons-card>
         </ons-page>
     </template>
 

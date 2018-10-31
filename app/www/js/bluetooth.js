@@ -106,8 +106,9 @@ var bluetooth = {
         var messageLines = message.split('|');
 
         for (var i = 0; i < messageLines.length; i++) {
-            console.log(messageLines[i]);
-            var data = stringToBytes(i + messageLines[i]);
+            var messageLine = messageLines[i].toUpperCase();
+            console.log(messageLine);
+            var data = stringToBytes(i + messageLine);
             ble.write(bluetooth.connectedDevice.id, bluetooth.serviceUuids.serviceUUID, bluetooth.serviceUuids.txCharacteristic, data.buffer, success, failure);
         }
     },
