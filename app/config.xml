@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="be.postduif.zeddiskalmdisplay" ios-CFBundleVersion="1.0.5" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>ZeddisKalmDisplay</name>
+<widget id="be.postduif.zeddiskalmdisplay" ios-CFBundleVersion="1.0.7" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Zegget Dan</name>
     <description>
-        Een app speciaal voor Karen.
+        Controleer je ZEGGET DAN display.
     </description>
     <author email="kurt@postduif.be" href="http://www.postduif.be">
         Kurt Beheydt

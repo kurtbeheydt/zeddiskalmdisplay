@@ -22,8 +22,8 @@
 
 #define CLK_PIN   21//13
 #define DATA_PIN  5//11
-#define CS_PIN1   19//10
-#define CS_PIN2   18//9
+#define CS_PIN1   18//10
+#define CS_PIN2   19//9
 
 struct LineDefinition {
   MD_MAX72XX  mx;                 // object definition
@@ -33,8 +33,8 @@ struct LineDefinition {
 
 struct LineDefinition Line[] =
 {
-  { MD_MAX72XX(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN1, MAX_DEVICES), "ZEDDIS", true },
-  { MD_MAX72XX(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN2, MAX_DEVICES), " KALM", true }
+  { MD_MAX72XX(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN1, MAX_DEVICES), " F*CK", true },
+  { MD_MAX72XX(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN2, MAX_DEVICES), "CNCPT", true }
 };
 
 #define MAX_LINES   (sizeof(Line) / sizeof(LineDefinition))
@@ -250,4 +250,3 @@ void loop() {
     }
   }
 }
-
